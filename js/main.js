@@ -6,6 +6,10 @@ const photoInput = document.getElementById("photoInput");
 const photoPreview = document.getElementById("photoPreview");
 const uploadStatus = document.getElementById("uploadStatus");
 
+const progressContainer = document.getElementById("progressContainer");
+const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
+
 const guestNameInput = document.getElementById("guestName");
 
 
@@ -199,26 +203,62 @@ async function uploadPhotos() {
         return;
     }
 
+
     uploadPhotosBtn.disabled = true;
     selectPhotosBtn.disabled = true;
 
+
+    const totalPhotos =
+        selectedFiles.length;
+
+
     const guestName =
-        guestNameInput.value.trim() || "Anonymous";
+        guestNameInput.value.trim() ||
+        "Anonymous";
+
 
     let uploaded = 0;
+
+
+    // ================================
+    // SHOW PROGRESS
+    // ================================
+
+    progressContainer.style.display = "block";
+
+    progressBar.style.width = "0%";
+
+    progressText.textContent =
+        `0 of ${totalPhotos} photos uploaded`;
+
 
     try {
 
         for (const file of selectedFiles) {
 
+            // ================================
+            // PREPARING
+            // ================================
+
             uploadStatus.textContent =
-                `Preparing photo ${uploaded + 1} of ${selectedFiles.length}...`;
+                `Preparing photo ${uploaded + 1} of ${totalPhotos}...`;
+
 
             const compressedFile =
                 await compressImage(file);
 
+
+            // ================================
+            // CONVERT TO BASE64
+            // ================================
+
             const base64 =
                 await fileToBase64(compressedFile);
+
+
+            // ================================
+            // CREATE PAYLOAD
+            // ================================
 
             const payload = {
 
@@ -232,8 +272,14 @@ async function uploadPhotos() {
 
             };
 
+
+            // ================================
+            // UPLOADING
+            // ================================
+
             uploadStatus.textContent =
-                `Uploading ${uploaded + 1} of ${selectedFiles.length}...`;
+                `Uploading photo ${uploaded + 1} of ${totalPhotos}...`;
+
 
             const response =
                 await fetch(API_URL, {
@@ -241,11 +287,14 @@ async function uploadPhotos() {
                     method: "POST",
 
                     headers: {
+
                         "Content-Type":
                             "text/plain;charset=utf-8"
+
                     },
 
-                    body: JSON.stringify(payload)
+                    body:
+                        JSON.stringify(payload)
 
                 });
 
@@ -271,7 +320,7 @@ async function uploadPhotos() {
             } catch (error) {
 
                 console.error(
-                    "Could not parse Apps Script response:",
+                    "Invalid response:",
                     responseText
                 );
 
@@ -282,6 +331,10 @@ async function uploadPhotos() {
             }
 
 
+            // ================================
+            // CHECK UPLOAD
+            // ================================
+
             if (result.status !== "success") {
 
                 throw new Error(
@@ -291,15 +344,49 @@ async function uploadPhotos() {
 
             }
 
+
+            // ================================
+            // PHOTO SUCCESS
+            // ================================
+
             uploaded++;
+
+
+            const progress =
+                Math.round(
+                    (uploaded / totalPhotos) * 100
+                );
+
+
+            progressBar.style.width =
+                `${progress}%`;
+
+
+            progressText.textContent =
+                `${uploaded} of ${totalPhotos} photos uploaded`;
+
+
+            uploadStatus.textContent =
+                `Uploaded ${uploaded} of ${totalPhotos}...`;
 
         }
 
 
+        // ================================
+        // ALL DONE
+        // ================================
+
+        progressBar.style.width = "100%";
+
+
+        progressText.textContent =
+            `${totalPhotos} of ${totalPhotos} photos uploaded`;
+
         uploadStatus.textContent =
-            `❤️ Thank you! ${uploaded} photo${
-                uploaded > 1 ? "s" : ""
+            `❤️ Thank you! ${totalPhotos} photo${
+                totalPhotos > 1 ? "s" : ""
             } uploaded successfully.`;
+
 
         selectedFiles = [];
 
@@ -312,16 +399,22 @@ async function uploadPhotos() {
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Upload error:",
+            error
+        );
+
 
         uploadStatus.textContent =
-            "Something went wrong while uploading. Please try again.";
+            "⚠️ We couldn't confirm the upload.";
+
 
         alert(
-            "Upload failed. Please check your internet connection and try again."
+            "We couldn't confirm the upload. Please check Google Drive before trying again."
         );
 
     }
+
 
     uploadPhotosBtn.disabled = true;
 
