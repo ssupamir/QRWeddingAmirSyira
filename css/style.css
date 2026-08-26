@@ -92,7 +92,7 @@ button:hover{
     background:linear-gradient(rgba(255,248,240,0.65),rgba(255,248,240,0.65)),
                url('../images/background.jpeg');
     background-position:center;
-    
+
     min-height: 100vh;
     padding: 80px 20px;
     display: flex;
@@ -302,4 +302,222 @@ button:hover{
     color: #7B6854;
 
     text-align: center;
+}
+
+/* =================================
+   UPLOAD LOADING OVERLAY
+================================= */
+
+.upload-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(30, 25, 20, 0.55);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 99999;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+
+    pointer-events: none;
+}
+
+
+/* SHOW OVERLAY */
+
+.upload-overlay.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: all;
+
+}
+
+
+/* =================================
+   MODAL
+================================= */
+
+.upload-modal {
+
+    width: min(90%, 380px);
+
+    padding: 35px 30px;
+
+    background: rgba(255, 250, 245, 0.97);
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.25);
+
+}
+
+
+/* =================================
+   SPINNER
+================================= */
+
+.spinner {
+
+    width: 48px;
+    height: 48px;
+
+    margin: 0 auto 20px;
+
+    border: 4px solid rgba(160, 120, 80, 0.2);
+
+    border-top-color: #b4875a;
+
+    border-radius: 50%;
+
+    animation: spin 0.9s linear infinite;
+}
+
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =================================
+   TITLE
+================================= */
+
+.upload-modal h3 {
+
+    margin: 0 0 10px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 28px;
+
+    font-weight: 600;
+
+    color: #443832;
+
+}
+
+
+/* =================================
+   PROGRESS TEXT
+================================= */
+
+#overlayProgress {
+
+    margin: 0 0 20px;
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 14px;
+
+    color: #75675e;
+
+}
+
+
+/* =================================
+   PROGRESS BAR
+================================= */
+
+.overlay-progress-container {
+
+    width: 100%;
+
+    height: 7px;
+
+    background: #eadfd5;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    margin-bottom: 18px;
+
+}
+
+
+.overlay-progress-bar {
+
+    width: 0%;
+
+    height: 100%;
+
+    background: #b4875a;
+
+    border-radius: 10px;
+
+    transition: width 0.3s ease;
+
+}
+
+
+/* =================================
+   NOTE
+================================= */
+
+.upload-note {
+
+    margin: 0;
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 11px;
+
+    color: #a0948c;
+
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 480px) {
+
+    .upload-modal {
+
+        width: 82%;
+
+        padding: 30px 22px;
+
+    }
+
+    .upload-modal h3 {
+
+        font-size: 25px;
+
+    }
+
 }

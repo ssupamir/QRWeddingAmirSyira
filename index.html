@@ -208,10 +208,37 @@
 
     </section>
 
+        <script src="js/main.js"></script>
 
+        <!-- Upload Loading Overlay -->
+        <div id="uploadOverlay" class="upload-overlay">
 
-    <script src="js/main.js"></script>
+            <div class="upload-modal">
 
-</body>
+                <div class="spinner"></div>
 
+                <h3>Uploading Your Photos</h3>
+
+                <p id="overlayProgress">
+                    Preparing...
+                </p>
+
+                <div class="overlay-progress-container">
+
+                    <div
+                        id="overlayProgressBar"
+                        class="overlay-progress-bar">
+                    </div>
+
+                </div>
+
+                <p class="upload-note">
+                    Please don't close or refresh this page.
+                </p>
+
+            </div>
+
+        </div>
+
+    </body>
 </html>
