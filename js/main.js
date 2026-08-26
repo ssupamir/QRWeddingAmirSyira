@@ -281,69 +281,21 @@ async function uploadPhotos() {
                 `Uploading photo ${uploaded + 1} of ${totalPhotos}...`;
 
 
-            const response =
-                await fetch(API_URL, {
+            await fetch(API_URL, {
 
-                    method: "POST",
+                method: "POST",
 
-                    headers: {
+                mode: "no-cors",
 
-                        "Content-Type":
-                            "text/plain;charset=utf-8"
+                headers: {
+                    "Content-Type":
+                        "text/plain;charset=utf-8"
+                },
 
-                    },
+                body:
+                    JSON.stringify(payload)
 
-                    body:
-                        JSON.stringify(payload)
-
-                });
-
-
-            const responseText =
-                await response.text();
-
-
-            console.log(
-                "Google Apps Script response:",
-                responseText
-            );
-
-
-            let result;
-
-
-            try {
-
-                result =
-                    JSON.parse(responseText);
-
-            } catch (error) {
-
-                console.error(
-                    "Invalid response:",
-                    responseText
-                );
-
-                throw new Error(
-                    "Invalid response from Google Apps Script."
-                );
-
-            }
-
-
-            // ================================
-            // CHECK UPLOAD
-            // ================================
-
-            if (result.status !== "success") {
-
-                throw new Error(
-                    result.message ||
-                    "Upload failed."
-                );
-
-            }
-
+            });
 
             // ================================
             // PHOTO SUCCESS
@@ -356,7 +308,6 @@ async function uploadPhotos() {
                 Math.round(
                     (uploaded / totalPhotos) * 100
                 );
-
 
             progressBar.style.width =
                 `${progress}%`;
