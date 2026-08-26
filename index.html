@@ -60,13 +60,50 @@
                 and share them with us.
             </p>
 
+            <div class="guest-name-container">
+
+                <label for="guestName">
+                    Your Name <span>(Optional)</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="guestName"
+                    placeholder="e.g. Ahmad"
+                    maxlength="50"
+                >
+
+            </div>
+
             <button id="selectPhotosBtn">
                 Select Photos
             </button>
 
-            <div id="photoPreview" class="photo-preview"></div>
+            <button
+                id="uploadPhotosBtn"
+                class="upload-button"
+                disabled
+            >
+                Upload Photos
+            </button>
 
-            <div id="uploadStatus" class="upload-status"></div>
+            <input
+                type="file"
+                id="photoInput"
+                accept="image/jpeg,image/png,image/webp"
+                multiple
+                hidden
+            >
+
+            <div 
+                id="photoPreview" 
+                class="photo-preview">
+            </div>
+
+            <div 
+                id="uploadStatus" 
+                class="upload-status">
+            </div>
 
         </div>
 
