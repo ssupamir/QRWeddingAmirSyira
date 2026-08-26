@@ -89,12 +89,16 @@ button:hover{
 }
 
 .upload-section {
+    background:linear-gradient(rgba(255,248,240,0.65),rgba(255,248,240,0.65)),
+               url('../images/background.jpeg');
+    background-position:center;
+    
     min-height: 100vh;
     padding: 80px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #FAF8F5;
+    /*background: #FAF8F5;*/
 }
 
 .upload-container {
