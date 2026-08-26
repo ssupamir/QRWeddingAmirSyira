@@ -70,10 +70,10 @@ photoInput.addEventListener("change", (event) => {
     }
 
 
-    if (files.length > 20) {
+    if (files.length > 10) {
 
         alert(
-            "You can upload a maximum of 20 photos at once."
+            "You can upload a maximum of 10 photos at once."
         );
 
         photoInput.value = "";
