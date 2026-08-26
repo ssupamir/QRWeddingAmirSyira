@@ -16,6 +16,7 @@
 <body>
 
     <section class="hero">
+        
 
         <div class="overlay"></div>
 
@@ -33,6 +34,39 @@
             </p>
 
             <button id="uploadBtn">📸 Upload Your Photos</button>
+
+            <input
+                type="file"
+                id="photoInput"
+                accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
+                multiple
+                hidden
+            >
+
+        </div>
+
+    </section>
+
+    <section class="upload-section" id="uploadSection">
+
+        <div class="upload-container">
+
+            <p class="section-label">SHARE THE MOMENTS</p>
+
+            <h2>Your Photos</h2>
+
+            <p class="upload-description">
+                Select the photos you captured during our wedding
+                and share them with us.
+            </p>
+
+            <button id="selectPhotosBtn">
+                Select Photos
+            </button>
+
+            <div id="photoPreview" class="photo-preview"></div>
+
+            <div id="uploadStatus" class="upload-status"></div>
 
         </div>
 
