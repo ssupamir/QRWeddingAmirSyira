@@ -68,9 +68,17 @@
             </p>
 
 
-            <button id="uploadBtn">
-                📸 Upload Your Photos
-            </button>
+            <div class="hero-buttons">
+
+                <button id="uploadBtn" class="primary-button">
+                    📸 Upload Your Photos
+                </button>
+
+                <button id="galleryBtn" class="secondary-button">
+                    💐 View Gallery
+                </button>
+
+            </div>
 
         </div>
 
@@ -203,6 +211,49 @@
             >
             </div>
 
+
+        </div>
+
+    </section>
+
+    <!-- ================================
+        WEDDING ALBUM
+    ================================ -->
+
+    <section class="album-section" id="albumSection">
+
+        <div class="album-container">
+
+            <p class="section-label">OUR WEDDING MOMENTS</p>
+
+            <h2>Wedding Album</h2>
+
+            <p class="album-description">
+                A collection of beautiful moments shared by our family and friends.
+            </p>
+
+            <div
+                id="albumLoading"
+                class="album-loading">
+                Loading photos...
+            </div>
+
+            <div
+                id="albumGallery"
+                class="album-gallery">
+            </div>
+
+            <button
+                id="loadMoreBtn"
+                class="load-more-button"
+                style="display: none;">
+                Load More Photos
+            </button>
+
+            <p
+                id="albumStatus"
+                class="album-status">
+            </p>
 
         </div>
 

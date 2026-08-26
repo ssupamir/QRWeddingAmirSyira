@@ -1,11 +1,10 @@
 const uploadBtn = document.getElementById("uploadBtn");
 const selectPhotosBtn = document.getElementById("selectPhotosBtn");
 const uploadPhotosBtn = document.getElementById("uploadPhotosBtn");
-
+const galleryBtn = document.getElementById("galleryBtn");
 const photoInput = document.getElementById("photoInput");
 const photoPreview = document.getElementById("photoPreview");
 const uploadStatus = document.getElementById("uploadStatus");
-
 const progressContainer = document.getElementById("progressContainer");
 const progressBar = document.getElementById("progressBar");
 const progressText = document.getElementById("progressText");
@@ -36,6 +35,16 @@ uploadBtn.addEventListener("click", () => {
 
     document
         .getElementById("uploadSection")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+});
+
+galleryBtn.addEventListener("click", () => {
+
+    document
+        .getElementById("albumSection")
         .scrollIntoView({
             behavior: "smooth"
         });
@@ -569,3 +578,272 @@ function hideUploadOverlay() {
     uploadOverlay.classList.remove("active");
 
 }
+
+
+function shuffleArray(array) {
+
+    for (
+        let i = array.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+
+        [
+            array[i],
+            array[j]
+        ] = [
+            array[j],
+            array[i]
+        ];
+
+    }
+
+}
+
+// ================================
+// WEDDING ALBUM
+// ================================
+
+const albumGallery =
+    document.getElementById("albumGallery");
+
+const albumLoading =
+    document.getElementById("albumLoading");
+
+const loadMoreBtn =
+    document.getElementById("loadMoreBtn");
+
+const albumStatus =
+    document.getElementById("albumStatus");
+
+
+// Number of photos shown at once
+
+const PHOTOS_PER_LOAD = 12;
+
+
+// All photos from Google Drive
+
+let allAlbumPhotos = [];
+
+
+// Current number displayed
+
+let displayedPhotos = 0;
+
+
+// ================================
+// LOAD ALBUM
+// ================================
+
+async function loadAlbum() {
+
+    try {
+
+        albumLoading.style.display = "block";
+
+        albumGallery.innerHTML = "";
+
+        albumStatus.textContent = "";
+
+
+        const response =
+            await fetch(
+                API_URL + "?action=album"
+            );
+
+
+        const result =
+            await response.json();
+
+
+        console.log(
+            "Album response:",
+            result
+        );
+
+
+        if (result.status !== "success") {
+
+            throw new Error(
+                result.message ||
+                "Failed to load album."
+            );
+
+        }
+
+
+        allAlbumPhotos =
+            shuffleArray(
+                result.photos || []
+            );
+
+
+        displayedPhotos = 0;
+
+
+        albumLoading.style.display =
+            "none";
+
+
+        showMorePhotos();
+
+
+    } catch (error) {
+
+        console.error(
+            "Album error:",
+            error
+        );
+
+
+        albumLoading.style.display =
+            "none";
+
+
+        albumStatus.textContent =
+            "Unable to load the wedding album.";
+
+    }
+
+}
+
+
+// ================================
+// SHOW MORE PHOTOS
+// ================================
+
+function showMorePhotos() {
+
+    const nextPhotos =
+        allAlbumPhotos.slice(
+            displayedPhotos,
+            displayedPhotos +
+            PHOTOS_PER_LOAD
+        );
+
+
+    nextPhotos.forEach(
+        photo => {
+
+            const photoItem =
+                document.createElement("div");
+
+
+            photoItem.className =
+                "album-photo";
+
+
+            photoItem.innerHTML = `
+
+                <img
+                    src="${photo.url}"
+                    alt="Wedding photo"
+                    loading="lazy"
+                >
+
+            `;
+
+
+            albumGallery.appendChild(
+                photoItem
+            );
+
+        }
+    );
+
+
+    displayedPhotos +=
+        nextPhotos.length;
+
+
+    // Show / hide Load More
+
+    if (
+        displayedPhotos <
+        allAlbumPhotos.length
+    ) {
+
+        loadMoreBtn.style.display =
+            "inline-block";
+
+    } else {
+
+        loadMoreBtn.style.display =
+            "none";
+
+    }
+
+
+    if (
+        allAlbumPhotos.length === 0
+    ) {
+
+        albumStatus.textContent =
+            "No photos have been uploaded yet.";
+
+    }
+
+}
+
+
+// ================================
+// LOAD MORE BUTTON
+// ================================
+
+loadMoreBtn.addEventListener(
+    "click",
+    showMorePhotos
+);
+
+
+// ================================
+// RANDOMIZE PHOTOS
+// ================================
+
+function shuffleArray(array) {
+
+    const shuffled =
+        [...array];
+
+
+    for (
+        let i = shuffled.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() *
+                (i + 1)
+            );
+
+
+        [
+            shuffled[i],
+            shuffled[j]
+        ] = [
+            shuffled[j],
+            shuffled[i]
+        ];
+
+    }
+
+
+    return shuffled;
+
+}
+
+
+// ================================
+// LOAD ALBUM WHEN PAGE LOADS
+// ================================
+
+loadAlbum();
