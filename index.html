@@ -1,70 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Amir & Syahira | Wedding Photos</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
 </head>
+
+
 <body>
 
+
+    <!-- ================================
+         HERO SECTION
+    ================================= -->
+
     <section class="hero">
-        
 
         <div class="overlay"></div>
 
+
         <div class="hero-content">
 
-            <p class="welcome">WE'RE GETTING MARRIED</p>
+            <p class="welcome">
+                WE'RE GETTING MARRIED
+            </p>
 
-            <h1>Amir <span>&</span> Syahira</h1>
 
-            <p class="date">14 November 2026</p>
+            <h1>
+                Amir <span>&</span> Syahira
+            </h1>
+
+
+            <p class="date">
+                14 November 2026
+            </p>
+
 
             <p class="description">
                 Thank you for celebrating our special day.
                 Share every beautiful moment you've captured with us ❤️
             </p>
 
-            <button id="uploadBtn">📸 Upload Your Photos</button>
 
-            <input
-                type="file"
-                id="photoInput"
-                accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
-                multiple
-                hidden
-            >
+            <button id="uploadBtn">
+                📸 Upload Your Photos
+            </button>
 
         </div>
 
     </section>
 
-    <section class="upload-section" id="uploadSection">
+
+
+    <!-- ================================
+         UPLOAD SECTION
+    ================================= -->
+
+    <section
+        class="upload-section"
+        id="uploadSection"
+    >
 
         <div class="upload-container">
 
-            <p class="section-label">SHARE THE MOMENTS</p>
 
-            <h2>Your Photos</h2>
+            <p class="section-label">
+                SHARE THE MOMENTS
+            </p>
+
+
+            <h2>
+                Your Photos
+            </h2>
+
 
             <p class="upload-description">
                 Select the photos you captured during our wedding
                 and share them with us.
             </p>
 
+
+
+            <!-- GUEST NAME -->
+
             <div class="guest-name-container">
 
                 <label for="guestName">
-                    Your Name <span>(Optional)</span>
+                    Your Name
+                    <span>(Optional)</span>
                 </label>
+
 
                 <input
                     type="text"
@@ -75,9 +126,17 @@
 
             </div>
 
+
+
+            <!-- SELECT PHOTOS -->
+
             <button id="selectPhotosBtn">
                 Select Photos
             </button>
+
+
+
+            <!-- UPLOAD -->
 
             <button
                 id="uploadPhotosBtn"
@@ -87,46 +146,72 @@
                 Upload Photos
             </button>
 
+
+
+            <!-- FILE INPUT -->
+
             <input
                 type="file"
                 id="photoInput"
-                accept="image/jpeg,image/png,image/webp"
+                accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
                 multiple
                 hidden
             >
 
-            <div 
-                id="photoPreview" 
-                class="photo-preview">
+
+
+            <!-- PHOTO PREVIEW -->
+
+            <div
+                id="photoPreview"
+                class="photo-preview"
+            >
             </div>
+
+
+
+            <!-- STATUS -->
 
             <div
                 id="uploadStatus"
-                class="upload-status">
+                class="upload-status"
+            >
             </div>
+
+
+
+            <!-- PROGRESS -->
 
             <div
                 id="progressContainer"
                 class="progress-container"
-                style="display: none;">
+                style="display: none;"
+            >
 
                 <div
                     id="progressBar"
-                    class="progress-bar">
+                    class="progress-bar"
+                >
                 </div>
 
             </div>
 
+
             <div
                 id="progressText"
-                class="progress-text">
+                class="progress-text"
+            >
             </div>
+
 
         </div>
 
     </section>
 
+
+
     <script src="js/main.js"></script>
 
 </body>
+
 </html>

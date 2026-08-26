@@ -298,3 +298,63 @@ button:hover{
 
     text-align: center;
 }
+
+/* ================================
+   MOBILE RESPONSIVE FIX
+================================ */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    min-height: 100vh;
+}
+
+
+/* Main hero / landing section */
+
+.hero {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+}
+
+
+/* Wedding card */
+
+.hero-card {
+    width: calc(100% - 36px);
+    max-width: 650px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    box-sizing: border-box;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .hero {
+        padding: 20px 18px;
+    }
+
+    .hero-card {
+        width: 100%;
+        max-width: none;
+    }
+
+}
