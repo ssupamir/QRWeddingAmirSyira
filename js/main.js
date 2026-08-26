@@ -249,8 +249,38 @@ async function uploadPhotos() {
 
                 });
 
-            const result =
-                await response.json();
+
+            const responseText =
+                await response.text();
+
+
+            console.log(
+                "Google Apps Script response:",
+                responseText
+            );
+
+
+            let result;
+
+
+            try {
+
+                result =
+                    JSON.parse(responseText);
+
+            } catch (error) {
+
+                console.error(
+                    "Could not parse Apps Script response:",
+                    responseText
+                );
+
+                throw new Error(
+                    "Invalid response from Google Apps Script."
+                );
+
+            }
+
 
             if (result.status !== "success") {
 
