@@ -16,8 +16,7 @@ const guestNameInput = document.getElementById("guestName");
 // GOOGLE APPS SCRIPT URL
 // ================================
 
-const API_URL =
-    "https://script.google.com/macros/s/AKfycbwtR88p2-eeHkdzCP-5oCpL7ot4e1f63U8wbyJ022GQg2YOHI2-jVuZCwW16IV-7TzfMg/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbwtR88p2-eeHkdzCP-5oCpL7ot4e1f63U8wbyJ022GQg2YOHI2-jVuZCwW16IV-7TzfMg/exec";
 
 
 // ================================
@@ -250,12 +249,7 @@ async function uploadPhotos() {
                 `Preparing photo ${uploaded + 1} of ${selectedFiles.length}...`;
 
 
-            const compressedFile =
-                await compressImage(file);
-
-
-            const base64 =
-                await fileToBase64(compressedFile);
+            const base64 = await fileToBase64(file);
 
 
             const payload = {
@@ -429,7 +423,7 @@ async function uploadPhotos() {
     // =================================
     // UNLOCK WEBSITE
     // =================================
-
+    
     uploadPhotosBtn.disabled = true;
 
     selectPhotosBtn.disabled = false;
@@ -437,74 +431,8 @@ async function uploadPhotos() {
 }
 
 
-// ================================
-// COMPRESS IMAGE
-// ================================
 
-async function compressImage(file) {
-
-    const image = await createImageBitmap(file);
-
-    const maxWidth = 2000;
-    const maxHeight = 2000;
-
-    let width = image.width;
-    let height = image.height;
-
-
-    if (width > maxWidth || height > maxHeight) {
-
-        const ratio = Math.min(
-            maxWidth / width,
-            maxHeight / height
-        );
-
-        width = Math.round(width * ratio);
-        height = Math.round(height * ratio);
-
-    }
-
-
-    const canvas =
-        document.createElement("canvas");
-
-    canvas.width = width;
-    canvas.height = height;
-
-
-    const context =
-        canvas.getContext("2d");
-
-    context.drawImage(
-        image,
-        0,
-        0,
-        width,
-        height
-    );
-
-
-    const blob =
-        await new Promise(resolve => {
-
-            canvas.toBlob(
-                resolve,
-                "image/jpeg",
-                0.82
-            );
-
-        });
-
-
-    return blob;
-
-}
-
-
-// ================================
-// FILE → BASE64
-// ================================
-
+// This function converts a file to a Base64 string
 function fileToBase64(file) {
 
     return new Promise(
@@ -538,10 +466,7 @@ function fileToBase64(file) {
 
 }
 
-// ================================
-// SHOW UPLOAD OVERLAY
-// ================================
-
+// This function shows the upload overlay with a progress bar
 function showUploadOverlay() {
 
     uploadOverlay.classList.add("active");
@@ -554,11 +479,7 @@ function showUploadOverlay() {
 
 }
 
-
-// ================================
-// UPDATE UPLOAD PROGRESS
-// ================================
-
+// This function updates the progress bar and text during the upload process
 function updateUploadProgress(
     current,
     total
@@ -575,41 +496,10 @@ function updateUploadProgress(
 
 }
 
-
-// ================================
-// HIDE UPLOAD OVERLAY
-// ================================
-
+// This function hides the upload overlay after the upload is complete or if an error occurs
 function hideUploadOverlay() {
 
     uploadOverlay.classList.remove("active");
-
-}
-
-
-function shuffleArray(array) {
-
-    for (
-        let i = array.length - 1;
-        i > 0;
-        i--
-    ) {
-
-        const j =
-            Math.floor(
-                Math.random() * (i + 1)
-            );
-
-
-        [
-            array[i],
-            array[j]
-        ] = [
-            array[j],
-            array[i]
-        ];
-
-    }
 
 }
 
@@ -645,10 +535,7 @@ let allAlbumPhotos = [];
 let displayedPhotos = 0;
 
 
-// ================================
-// LOAD ALBUM
-// ================================
-
+// This function fetches the album photos from the Google Apps Script and displays them in the gallery
 async function loadAlbum() {
 
     try {
