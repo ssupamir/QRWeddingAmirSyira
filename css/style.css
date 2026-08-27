@@ -580,24 +580,24 @@ button:hover{
 }
 
 .load-more-button {
-    margin-top: 40px;
-    padding: 14px 30px;
+    display: block;
+    margin: 35px auto 0;
+    padding: 12px 28px;
 
-    border: none;
+    background: transparent;
+    border: 1px solid #333;
+    border-radius: 30px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
 
     cursor: pointer;
-
-    font-family: inherit;
-
-    background: #222;
-    color: white;
-
-    transition:
-        opacity 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .load-more-button:hover {
-    opacity: 0.8;
+    background: #333;
+    color: white;
 }
 
 .album-status {
@@ -621,61 +621,6 @@ button:hover{
             repeat(2, 1fr);
 
         gap: 8px;
-    }
-
-}
-
-.hero-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-top: 30px;
-}
-
-.primary-button,
-.secondary-button {
-    padding: 14px 28px;
-    border-radius: 4px;
-    font-family: inherit;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.primary-button {
-    border: none;
-    background: #222;
-    color: white;
-}
-
-.primary-button:hover {
-    opacity: 0.85;
-}
-
-.secondary-button {
-    border: 1px solid #222;
-    background: transparent;
-    color: #222;
-}
-
-.secondary-button:hover {
-    background: #222;
-    color: white;
-}
-
-@media (max-width: 600px) {
-
-    .hero-buttons {
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
-    }
-
-    .primary-button,
-    .secondary-button {
-        width: 100%;
-        max-width: 280px;
     }
 
 }

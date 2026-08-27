@@ -625,7 +625,7 @@ const albumStatus =
 
 // Number of photos shown at once
 
-const PHOTOS_PER_LOAD = 12;
+const PHOTOS_PER_LOAD = 8;
 
 
 // All photos from Google Drive
@@ -765,13 +765,10 @@ function showMorePhotos() {
 
     // Show / hide Load More
 
-    if (
-        displayedPhotos <
-        allAlbumPhotos.length
-    ) {
+    if (displayedPhotos < allAlbumPhotos.length) {
 
         loadMoreBtn.style.display =
-            "inline-block";
+            "block";
 
     } else {
 
