@@ -30,95 +30,101 @@ let selectedFiles = [];
 // ================================
 // SCROLL TO UPLOAD
 // ================================
+if(uploadBtn) {
+    uploadBtn.addEventListener("click", () => {
 
-uploadBtn.addEventListener("click", () => {
+        document
+            .getElementById("uploadSection")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
 
-    document
-        .getElementById("uploadSection")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
+    });
+}
 
-});
 
-galleryBtn.addEventListener("click", () => {
+if(galleryBtn) {
+    galleryBtn.addEventListener("click", () => {
 
-    document
-        .getElementById("albumSection")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
+        document
+            .getElementById("albumSection")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
 
-});
+    });
+}
 
 
 // ================================
 // OPEN FILE PICKER
 // ================================
+if(selectPhotosBtn) {
+    selectPhotosBtn.addEventListener("click", () => {
 
-selectPhotosBtn.addEventListener("click", () => {
+        photoInput.click();
 
-    photoInput.click();
-
-});
+    });
+}
 
 
 // ================================
 // PHOTO SELECTED
 // ================================
+if(photoInput) {
+    photoInput.addEventListener("change", (event) => {
 
-photoInput.addEventListener("change", (event) => {
-
-    const files = Array.from(event.target.files);
-
-
-    if (files.length === 0) {
-
-        return;
-
-    }
+        const files = Array.from(event.target.files);
 
 
-    if (files.length > 10) {
+        if (files.length === 0) {
 
-        alert(
-            "You can upload a maximum of 10 photos at once."
+            return;
+
+        }
+
+
+        if (files.length > 10) {
+
+            alert(
+                "You can upload a maximum of 10 photos at once."
+            );
+
+            photoInput.value = "";
+
+            return;
+
+        }
+
+
+        // Validate file sizes
+
+        const maxSize = 15 * 1024 * 1024;
+
+        const tooLarge = files.some(
+            file => file.size > maxSize
         );
 
-        photoInput.value = "";
 
-        return;
+        if (tooLarge) {
 
-    }
+            alert(
+                "Each photo must be smaller than 15 MB."
+            );
 
+            photoInput.value = "";
 
-    // Validate file sizes
+            return;
 
-    const maxSize = 15 * 1024 * 1024;
-
-    const tooLarge = files.some(
-        file => file.size > maxSize
-    );
+        }
 
 
-    if (tooLarge) {
+        selectedFiles = files;
 
-        alert(
-            "Each photo must be smaller than 15 MB."
-        );
+        displayPhotos();
 
-        photoInput.value = "";
-
-        return;
-
-    }
-
-
-    selectedFiles = files;
-
-    displayPhotos();
-
-});
+    });
+}
 
 
 // ================================
@@ -199,11 +205,12 @@ function removePhoto(index) {
 // ================================
 // UPLOAD PHOTOS
 // ================================
-
-uploadPhotosBtn.addEventListener(
-    "click",
-    uploadPhotos
-);
+if(uploadPhotosBtn) {   
+    uploadPhotosBtn.addEventListener(
+        "click",
+        uploadPhotos
+    );
+}
 
 
 async function uploadPhotos() {
@@ -755,36 +762,6 @@ function showMorePhotos() {
                 photoItem
             );
 
-            function openLightbox(imageUrl) {
-                const lightbox = document.createElement("div");
-
-                lightbox.className = "photo-lightbox";
-
-                lightbox.innerHTML = `
-                    <button class="lightbox-close">&times;</button>
-                    <img src="${imageUrl}" alt="Wedding Photo">
-                `;
-
-                document.body.appendChild(lightbox);
-
-                // Close button
-                lightbox
-                    .querySelector(".lightbox-close")
-                    .addEventListener("click", () => {
-                        lightbox.remove();
-                    });
-
-                // Click outside image
-                lightbox.addEventListener("click", (e) => {
-
-                    if (e.target === lightbox) {
-                        lightbox.remove();
-                    }
-
-                });
-
-            }
-
         }
     );
 
@@ -823,11 +800,12 @@ function showMorePhotos() {
 // ================================
 // LOAD MORE BUTTON
 // ================================
-
-loadMoreBtn.addEventListener(
-    "click",
-    showMorePhotos
-);
+if(loadMoreBtn) {
+    loadMoreBtn.addEventListener(
+        "click",
+        showMorePhotos
+    );
+}
 
 
 // ================================
