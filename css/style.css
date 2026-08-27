@@ -527,6 +527,7 @@ button:hover{
 ================================ */
 
 .album-section {
+    min-height: 100vh;
     padding: 100px 20px;
     background: #faf9f7;
 }
