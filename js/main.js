@@ -749,13 +749,17 @@ function showMorePhotos() {
 
             photoItem.innerHTML = `
 
-                <img
-                    src="${photo.url}"
-                    alt="Wedding photo"
-                    loading="lazy"
-                >
+            <img
+                src="${photo.url}"
+                alt="Wedding photo"
+                loading="lazy"
+            >
 
-            `;
+            <div class="photo-uploader">
+                📸 ${photo.guestName || "Anonymous"}
+            </div>
+
+        `;
 
 
             albumGallery.appendChild(

@@ -724,3 +724,57 @@ button:hover{
 body {
     padding-bottom: 80px;
 }
+
+
+.album-photo {
+    position: relative;
+    overflow: hidden;
+}
+
+.photo-uploader {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+
+    padding: 5px 10px;
+
+    background: rgba(0, 0, 0, 0.55);
+    color: white;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+
+    border-radius: 20px;
+
+    backdrop-filter: blur(4px);
+
+    pointer-events: none;
+}
+
+.album-photo {
+    position: relative;
+    overflow: hidden;
+}
+
+.photo-uploader {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    pointer-events: none;
+}
