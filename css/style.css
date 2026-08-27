@@ -597,7 +597,7 @@ button:hover{
 
 .load-more-button:hover {
     background: #333;
-    color: white;
+    color: black;
 }
 
 .album-status {
@@ -623,4 +623,34 @@ button:hover{
         gap: 8px;
     }
 
+}
+
+.load-more-button {
+    display: block;
+    margin: 30px auto 0;
+    padding: 12px 28px;
+
+    background: #8b6f47;
+    color: white;
+
+    border: none;
+    border-radius: 30px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.load-more-button:hover {
+    background: #8b6f47;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.load-more-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }

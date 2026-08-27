@@ -755,6 +755,36 @@ function showMorePhotos() {
                 photoItem
             );
 
+            function openLightbox(imageUrl) {
+                const lightbox = document.createElement("div");
+
+                lightbox.className = "photo-lightbox";
+
+                lightbox.innerHTML = `
+                    <button class="lightbox-close">&times;</button>
+                    <img src="${imageUrl}" alt="Wedding Photo">
+                `;
+
+                document.body.appendChild(lightbox);
+
+                // Close button
+                lightbox
+                    .querySelector(".lightbox-close")
+                    .addEventListener("click", () => {
+                        lightbox.remove();
+                    });
+
+                // Click outside image
+                lightbox.addEventListener("click", (e) => {
+
+                    if (e.target === lightbox) {
+                        lightbox.remove();
+                    }
+
+                });
+
+            }
+
         }
     );
 
